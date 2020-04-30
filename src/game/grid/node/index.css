@@ -7,9 +7,9 @@
 }
 
 .cell.mashroom {
-  background-image: url('/images/mashroom.png');
+  background-image: url('/simple-react-game/images/mashroom.png');
 }
 
 .cell.player {
-  background-image: url('/images/player.png');
+  background-image: url('/simple-react-game/images/player.png');
 }
