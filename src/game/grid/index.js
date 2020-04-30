@@ -68,13 +68,14 @@ export default class Grid extends Component {
   listenInputs() {
     let self = this;
     document.onkeyup = function(event) {
-      let newPosX, newPosY;
+      let newPosX, newPosY, isPlayerMoved = true;
       switch(event.keyCode) {
         case INPUTS.LEFT:
         case INPUTS.A:
           newPosX = (self.state.player % self.state.columns) - 1;
           newPosY = parseInt(self.state.player / self.state.columns);
           if (newPosX < 0) {
+            isPlayerMoved = false;
             newPosX = 0;
           }
           self.setState({
@@ -87,6 +88,7 @@ export default class Grid extends Component {
           newPosX = (self.state.player % self.state.columns);
           newPosY = parseInt(self.state.player / self.state.columns) - 1;
           if (newPosY < 0) {
+            isPlayerMoved = false;
             newPosY = 0;
           }
           self.setState({
@@ -99,6 +101,7 @@ export default class Grid extends Component {
           newPosX = (self.state.player % self.state.columns) + 1;
           newPosY = parseInt(self.state.player / self.state.columns);
           if (newPosX >= self.state.columns) {
+            isPlayerMoved = false;
             newPosX = self.state.columns - 1;
           }
           self.setState({
@@ -111,6 +114,7 @@ export default class Grid extends Component {
           newPosX = (self.state.player % self.state.columns);
           newPosY = parseInt(self.state.player / self.state.columns) + 1;
           if (newPosY >= self.state.rows) {
+            isPlayerMoved = false;
             newPosY = self.state.rows - 1;
           }
           self.setState({
@@ -133,9 +137,13 @@ export default class Grid extends Component {
           })
         });
       }
-      self.setState({
-        score: self.state.score + 1
-      });
+
+      //if player is not moved then dont increase steps
+      if (isPlayerMoved) {
+        self.setState({
+          score: self.state.score + 1
+        });
+      }
 
       //finish game
       if (self.state.mashrooms.length <= 0) {
