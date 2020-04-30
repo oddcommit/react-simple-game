@@ -1,0 +1,15 @@
+.cell {
+	border: 1px solid #333;
+	padding: 20px;
+	background-position: center;
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+}
+
+.cell.mashroom {
+	background-image: url('/images/mashroom.png');
+}
+
+.cell.player {
+	background-image: url('/images/player.png');
+}
